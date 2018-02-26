@@ -17,15 +17,25 @@ class ValidateController extends Controller
      */
     public function behaviors()
     {
-        return [
+        return array_merge(parent::behaviors(), [
             'contentNegotiator' => [
-                'class' => ContentNegotiator::className(),
+                'class' => ContentNegotiator::class(),
                 'formats' => [
                     'application/json' => Response::FORMAT_JSON,
                     // 'application/xml' => Response::FORMAT_XML,
                 ],
             ],
-        ];
+            'corsFilter'  => [
+                'class' => \yii\filters\Cors::class(),
+                'cors'  => [
+                    // restrict access to domains:
+                    //'Origin'                           => static::allowedDomains(),
+                    'Access-Control-Request-Method'    => ['POST'],
+                    'Access-Control-Allow-Credentials' => true,
+                    'Access-Control-Max-Age'           => 3600,                 // Cache (seconds)
+                ],
+            ],
+        ]);
     }
 
     public function actionIndex()
