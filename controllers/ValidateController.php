@@ -93,8 +93,20 @@ class ValidateController extends Controller
         }
 
         if ($code === '1 sh4ll p4ss' || $code === '1 Sh4ll P4ss') {
-            return ['Ishallpass' => 'Success! Click _here_ to submit your score.'];
+            return ['Ishallpass' => 'Success! Click below to submit your score.'];
         }
+
+        $random_errors = [
+            '','','','','',
+            ' Try harder!',
+            " Don't listen to Gandalf...",
+            ' You failed, go home.',
+            ' This is sad...',
+            " Don't you have better things to do ?"
+        ];
+        $random_key = array_rand($random_errors);
+
+        return ['emplty' => 'Secred Code is incorrect.' . $random_errors[$random_key]];
 
         return [];
     }
