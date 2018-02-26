@@ -4,4 +4,4 @@
 
 $this->title = 'My Yii Application';
 ?>
-site index
+go home
