@@ -114,6 +114,10 @@ class ValidateController extends Controller
             return ['3l1tN4m3' => "3l1t N4m3!"];
         }
 
+        if($names == 'ChuckNorris'){
+            return ['chuck' => "Chuck Norris Approved"];
+        }
+
         return [];
     }
 
