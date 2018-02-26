@@ -67,17 +67,17 @@ class ValidateController extends Controller
             return ['emplty' => 'Secret Code is required.'];
         }
 
+        $under_code = str_replace(' ', '_', $code);
+        if (preg_match("(\W)", $under_code)) {
+            return ['text' => 'Secret Code should not contain special chars.'];
+        }
+
         if (!preg_match("([a-zA-Z])", $code)) {
             return ['numbers' => 'Secret Code should not contain only numbers.'];
         }
 
         if (!preg_match("([0-9])", $code)) {
             return ['letters' => 'Secret Code should not contain only letters.'];
-        }
-
-        $under_code = str_replace(' ', '_', $code);
-        if (preg_match("(\W)", $under_code)) {
-            return ['text' => 'Secret Code should not contain special chars.'];
         }
 
         if (!preg_match("(.+\s.+)", $code)) {
