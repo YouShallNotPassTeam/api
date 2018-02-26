@@ -19,20 +19,20 @@ class ValidateController extends Controller
     {
         return array_merge(parent::behaviors(), [
             'contentNegotiator' => [
-                'class' => ContentNegotiator::class(),
+                'class' => ContentNegotiator::className(),
                 'formats' => [
                     'application/json' => Response::FORMAT_JSON,
                     // 'application/xml' => Response::FORMAT_XML,
                 ],
             ],
             'corsFilter'  => [
-                'class' => \yii\filters\Cors::class(),
+                'class' => \yii\filters\Cors::className(),
                 'cors'  => [
                     // restrict access to domains:
-                    //'Origin'                           => static::allowedDomains(),
+                    'Origin'                           => ['*'],
                     'Access-Control-Request-Method'    => ['POST'],
                     'Access-Control-Allow-Credentials' => true,
-                    'Access-Control-Max-Age'           => 3600,                 // Cache (seconds)
+                    'Access-Control-Max-Age'           => 3600, // Cache (seconds)
                 ],
             ],
         ]);
